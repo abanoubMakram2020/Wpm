@@ -13,12 +13,7 @@ namespace wpm.Clinic.Domain.Tests
         }
 
 
-        [Fact]
-        public void consultation_should_not_have_ended_timestamp()
-        {
-            var c = new Consultation(Guid.NewGuid());
-            Assert.Null(c.EndedAt);
-        }
+
 
         [Fact]
         public void consultation_should_not_ended_when_missing_data()

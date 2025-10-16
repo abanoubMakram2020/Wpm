@@ -1,4 +1,5 @@
 ﻿using wpm.Clinic.Domain.ValueObjects;
+using Wpm.Clinic.Domain.ValueObjects;
 using Wpm.SharedKernal;
 using Wpm.SharedKernal.ValueObjects;
 
@@ -8,8 +9,7 @@ namespace wpm.Clinic.Domain.Entities
     {
         private readonly List<DrugAdministration> administeredDrugs = new();
         private readonly List<VitalSigns> vitalSignReadings = new();
-        public DateTime StartAt { get; init; }
-        public DateTime? EndedAt { get; private set; }
+        public DateTimeRange When { get; private set; }
         public PatientId PatientId { get; init; }
         public Text? Diagnosis { get; private set; }
         public Text? Treatment { get; private set; }
@@ -23,7 +23,7 @@ namespace wpm.Clinic.Domain.Entities
             Id = Guid.NewGuid();
             PatientId = patientId;
             Status = ConsultationStatus.Open;
-            StartAt = DateTime.UtcNow;
+            When = DateTime.UtcNow;
         }
 
         public void RegisterVitalSigns(IEnumerable<VitalSigns> vitalSigns)
@@ -69,7 +69,7 @@ namespace wpm.Clinic.Domain.Entities
 
             }
             Status = ConsultationStatus.Closed;
-            EndedAt = DateTime.UtcNow;
+            When = new DateTimeRange(When.StartedAt, DateTime.UtcNow);
         }
     }
 
