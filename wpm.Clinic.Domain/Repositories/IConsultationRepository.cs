@@ -10,6 +10,6 @@ namespace wpm.Clinic.Domain.Repositories
         Task Update(Consultation consultation);
         void Delete(Consultation consultation);
 
-        Task<int> SaveChanges();
+        Task<int> SaveChangesAsync();
     }
 }

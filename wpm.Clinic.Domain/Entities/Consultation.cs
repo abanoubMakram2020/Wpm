@@ -11,12 +11,13 @@ namespace wpm.Clinic.Domain.Entities
         public DateTime StartAt { get; init; }
         public DateTime? EndedAt { get; private set; }
         public PatientId PatientId { get; init; }
-        public Text Diagnosis { get; private set; }
-        public Text Treatment { get; private set; }
-        public Weight CurrentWeight { get; private set; }
+        public Text? Diagnosis { get; private set; }
+        public Text? Treatment { get; private set; }
+        public Weight? CurrentWeight { get; private set; }
         public ConsultationStatus Status { get; private set; }
         public IReadOnlyList<DrugAdministration> AdministeredDrugs => administeredDrugs.AsReadOnly();
         public IReadOnlyList<VitalSigns> VitalSignReadings => vitalSignReadings.AsReadOnly();
+
         public Consultation(PatientId patientId)
         {
             Id = Guid.NewGuid();

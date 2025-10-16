@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Wpm.Clinic.ApplicationService\Wpm.Clinic.ApplicationService.csproj" />
     <ProjectReference Include="..\Wpm.Clinic.Infrastructure\Wpm.Clinic.Infrastructure.csproj" />
   </ItemGroup>
 

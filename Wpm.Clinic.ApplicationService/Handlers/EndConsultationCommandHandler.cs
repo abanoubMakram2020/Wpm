@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using wpm.Clinic.Domain.Repositories;
+using Wpm.SharedKernal.Command;
 
 namespace Wpm.Clinic.ApplicationService.Handlers
 {
-    internal class EndConsultationCommandHandler
+    public record EndConsultationCommand(Guid ConsultationId);
+
+    public class EndConsultationCommandHandler(IConsultationRepository consultationRepository) : ICommandHandler<EndConsultationCommand>
     {
+        public async Task Handle(EndConsultationCommand command)
+        {
+            var consultation = await consultationRepository.GetById(command.ConsultationId);
+            consultation!.End();
+            await consultationRepository.SaveChangesAsync();
+        }
     }
 }

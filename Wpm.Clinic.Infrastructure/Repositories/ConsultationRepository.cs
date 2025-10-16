@@ -35,7 +35,7 @@ namespace Wpm.Clinic.Infrastructure.Repositories
         {
             _clinicDBContext.Consultations.Update(consultation);
         }
-        public async Task<int> SaveChanges()
+        public async Task<int> SaveChangesAsync()
         {
             return await _clinicDBContext.SaveChangesAsync();
         }
