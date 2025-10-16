@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Wpm.Management.ApplicationService;
+using Wpm.SharedKernal;
 
 namespace wpm.Management.Api.Controllers
 {

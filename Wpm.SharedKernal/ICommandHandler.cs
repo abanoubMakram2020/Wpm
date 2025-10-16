@@ -1,4 +1,4 @@
-﻿namespace Wpm.Management.ApplicationService
+﻿namespace Wpm.SharedKernal
 {
     public interface ICommandHandler<in T> where T : notnull
     {

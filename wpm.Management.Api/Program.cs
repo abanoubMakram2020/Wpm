@@ -5,6 +5,7 @@ using wpm.Management.Domain.Repositories;
 using Wpm.Management.ApplicationService;
 using Wpm.Management.Infrastructure;
 using Wpm.Management.Infrastructure.Repositories;
+using Wpm.SharedKernal;
 
 namespace wpm.Management.Api
 {
