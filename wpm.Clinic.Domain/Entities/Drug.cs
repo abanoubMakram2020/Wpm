@@ -1,6 +1,6 @@
 ﻿using Wpm.SharedKernal;
 
-namespace wpm.Clinic.Domain
+namespace wpm.Clinic.Domain.Entities
 {
     public class Drug : Entity
     {

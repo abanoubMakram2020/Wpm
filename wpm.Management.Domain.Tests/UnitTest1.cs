@@ -10,7 +10,7 @@ namespace wpm.Management.Domain.Tests
         public void Pet_should_be_equal()
         {
             var id = Guid.NewGuid();
-            var breedService = new FakeBreadService();
+            var breedService = new BreadService();
             var breedId = new BreedId(breedService._breeds[0].Id, breedService);
             var pet1 = new Pet(id, "Abanoub", 34, "Black", SexOfPet.Male, breedId);
             var pet2 = new Pet(id, "Mariam", 29, "White", SexOfPet.Female, breedId);
@@ -21,7 +21,7 @@ namespace wpm.Management.Domain.Tests
         public void Pet_should_be_equal_using_operators()
         {
             var id = Guid.NewGuid();
-            var breedService = new FakeBreadService();
+            var breedService = new BreadService();
             var breedId = new BreedId(breedService._breeds[0].Id, breedService);
             var pet1 = new Pet(id, "Abanoub", 34, "Black", SexOfPet.Male, breedId);
             var pet2 = new Pet(id, "Mariam", 29, "White", SexOfPet.Female, breedId);
@@ -31,7 +31,7 @@ namespace wpm.Management.Domain.Tests
         [Fact]
         public void Pet_should_not_be_equal_using_operators()
         {
-            var breedService = new FakeBreadService();
+            var breedService = new BreadService();
             var breedId = new BreedId(breedService._breeds[0].Id, breedService);
             var pet1 = new Pet(Guid.NewGuid(), "Abanoub", 34, "Black", SexOfPet.Male, breedId);
             var pet2 = new Pet(Guid.NewGuid(), "Mariam", 29, "White", SexOfPet.Female, breedId);
@@ -57,7 +57,7 @@ namespace wpm.Management.Domain.Tests
         [Fact]
         public void BreedId_should_be_Valid()
         {
-            var breadService = new FakeBreadService();
+            var breadService = new BreadService();
             var id = breadService._breeds[0].Id;
             var breedId = new BreedId(id, breadService);
             Assert.NotNull(breedId);
@@ -66,7 +66,7 @@ namespace wpm.Management.Domain.Tests
         [Fact]
         public void BreedId_should_not_be_Valid()
         {
-            var breadService = new FakeBreadService();
+            var breadService = new BreadService();
             var id = Guid.NewGuid();
 
             Assert.Throws<ArgumentException>(() =>
@@ -77,7 +77,7 @@ namespace wpm.Management.Domain.Tests
         [Fact]
         public void WeightClass_should_be_ideal()
         {
-            var breedService = new FakeBreadService();
+            var breedService = new BreadService();
             var breedId = new BreedId(breedService._breeds[0].Id, breedService);
             var pet = new Pet(Guid.NewGuid(), "Abanoub", 34, "Black", SexOfPet.Male, breedId);
             pet.SetWeight(30.0m, breedService);
@@ -87,7 +87,7 @@ namespace wpm.Management.Domain.Tests
         [Fact]
         public void WeightClass_should_be_underweight()
         {
-            var breedService = new FakeBreadService();
+            var breedService = new BreadService();
             var breedId = new BreedId(breedService._breeds[0].Id, breedService);
             var pet = new Pet(Guid.NewGuid(), "Abanoub", 34, "Black", SexOfPet.Male, breedId);
             pet.SetWeight(20.0m, breedService);
@@ -97,7 +97,7 @@ namespace wpm.Management.Domain.Tests
         [Fact]
         public void WeightClass_should_be_overweight()
         {
-            var breedService = new FakeBreadService();
+            var breedService = new BreadService();
             var breedId = new BreedId(breedService._breeds[0].Id, breedService);
             var pet = new Pet(Guid.NewGuid(), "Abanoub", 34, "Black", SexOfPet.Male, breedId);
             pet.SetWeight(40.0m, breedService);

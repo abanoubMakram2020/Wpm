@@ -1,3 +1,4 @@
+using wpm.Clinic.Domain.Entities;
 using wpm.Clinic.Domain.ValueObjects;
 
 namespace wpm.Clinic.Domain.Tests

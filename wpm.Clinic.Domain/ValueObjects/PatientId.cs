@@ -3,6 +3,10 @@
     public record PatientId
     {
         public Guid Value { get; init; } = Guid.Empty;
+        public static PatientId Create(Guid value)
+        {
+            return new PatientId(value);
+        }
         public PatientId(Guid value)
         {
             if (value == Guid.Empty)

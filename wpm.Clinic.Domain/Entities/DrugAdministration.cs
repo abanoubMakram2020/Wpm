@@ -1,7 +1,7 @@
 ﻿using wpm.Clinic.Domain.ValueObjects;
 using Wpm.SharedKernal;
 
-namespace wpm.Clinic.Domain
+namespace wpm.Clinic.Domain.Entities
 {
     public class DrugAdministration : Entity
     {

@@ -3,6 +3,10 @@
     public record DrugId
     {
         public Guid Value { get; init; } = Guid.Empty;
+        public static DrugId Create(Guid value)
+        {
+            return new DrugId(value);
+        }
         public DrugId(Guid value)
         {
             if (value == Guid.Empty)
