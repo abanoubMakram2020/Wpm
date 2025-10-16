@@ -20,19 +20,23 @@ namespace Wpm.Management.Infrastructure.Repositories
             return _managementDBContext.Pets.ToList();
         }
 
-        public Pet? GetById(Guid id)
+        public async Task<Pet?> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return await _managementDBContext.Pets.FindAsync(id);
         }
 
-        public void Insert(Pet pet)
+        public async Task Insert(Pet pet)
         {
-            throw new NotImplementedException();
+            await _managementDBContext.Pets.AddAsync(pet);
         }
 
-        public void Update(Pet pet)
+        public async Task Update(Pet pet)
         {
-            throw new NotImplementedException();
+            _managementDBContext.Pets.Update(pet);
+        }
+        public async Task<int> SaveChanges()
+        {
+            return await _managementDBContext.SaveChangesAsync();
         }
     }
 }

@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Wpm.Management.ApplicationService\Wpm.Management.ApplicationService.csproj" />
     <ProjectReference Include="..\Wpm.Management.Infrastructure\Wpm.Management.Infrastructure.csproj" />
   </ItemGroup>
 
