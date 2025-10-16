@@ -20,10 +20,5 @@ namespace Wpm.Management.ApplicationService
             await managementRepository.Insert(newPet);
             await managementRepository.SaveChanges();
         }
-
-        public async Task Handle(SetWeightCommand command)
-        {
-
-        }
     }
 }

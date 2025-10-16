@@ -1,4 +1,4 @@
-﻿namespace Wpm.Management.ApplicationService
+﻿namespace Wpm.SharedKernal.ValueObjects
 {
     public record SetWeightCommand(Guid Id, decimal Weight);
 }

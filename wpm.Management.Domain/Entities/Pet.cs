@@ -29,12 +29,12 @@ namespace wpm.Management.Domain.Entities
 
             var (from, to) = SexOfType switch
             {
-                SexOfPet.Male => (desiredBreed?.MaleIdealWeight.From, desiredBreed.MaleIdealWeight.To),
-                SexOfPet.Female => (desiredBreed?.FemaleIdealWeight.From, desiredBreed.FemaleIdealWeight.To),
+                SexOfPet.Male => (desiredBreed?.MaleIdealWeight.From, desiredBreed!.MaleIdealWeight.To),
+                SexOfPet.Female => (desiredBreed?.FemaleIdealWeight.From, desiredBreed!.FemaleIdealWeight.To),
                 _ => throw new NotImplementedException()
             };
 
-            WeightClass = Weight.Value switch
+            WeightClass = Weight!.Value switch
             {
                 _ when Weight.Value < from => WeightClass.Underweight,
                 _ when Weight.Value > to => WeightClass.Overweight,

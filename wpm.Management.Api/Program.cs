@@ -6,6 +6,7 @@ using Wpm.Management.ApplicationService;
 using Wpm.Management.Infrastructure;
 using Wpm.Management.Infrastructure.Repositories;
 using Wpm.SharedKernal.Command;
+using Wpm.SharedKernal.ValueObjects;
 
 namespace wpm.Management.Api
 {
@@ -53,7 +54,7 @@ namespace wpm.Management.Api
                 }
                 catch (Exception ex)
                 {
-                    var logger = scope.ServiceProvider.GetService<ILogger>();
+                    Console.WriteLine(ex.Message);
                     throw;
                 }
 

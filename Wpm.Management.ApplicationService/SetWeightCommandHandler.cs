@@ -1,6 +1,7 @@
 ﻿using wpm.Management.Domain;
 using wpm.Management.Domain.Repositories;
 using Wpm.SharedKernal.Command;
+using Wpm.SharedKernal.ValueObjects;
 
 namespace Wpm.Management.ApplicationService
 {
@@ -9,7 +10,7 @@ namespace Wpm.Management.ApplicationService
         public async Task Handle(SetWeightCommand command)
         {
             var pet = await managementRepository.GetById(command.Id);
-            pet.SetWeight(command.Weight, breadService);
+            pet!.SetWeight(command.Weight, breadService);
             await managementRepository.SaveChanges();
         }
     }
