@@ -87,8 +87,8 @@ namespace wpm.Clinic.Domain.Tests
             var c = new Consultation(Guid.NewGuid());
             IEnumerable<VitalSigns> vitalSigns = new List<VitalSigns>()
             {
-                new VitalSigns(120,80, 20),
-                new VitalSigns(130,85, 22)
+                new VitalSigns(DateTime.Now,120,80, 20),
+                new VitalSigns(DateTime.Now,130,85, 22)
             };
             c.RegisterVitalSigns(vitalSigns);
             Assert.True(c.VitalSignReadings.Count == 2);

@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using Wpm.Clinic.Infrastructure;
+
 namespace wpm.Clinic.API
 {
     public class Program
@@ -13,6 +16,7 @@ namespace wpm.Clinic.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<ClinicDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("WpmClinicDb")));
 
             var app = builder.Build();
 
