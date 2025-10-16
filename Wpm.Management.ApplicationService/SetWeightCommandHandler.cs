@@ -1,6 +1,6 @@
 ﻿using wpm.Management.Domain;
 using wpm.Management.Domain.Repositories;
-using Wpm.SharedKernal;
+using Wpm.SharedKernal.Command;
 
 namespace Wpm.Management.ApplicationService
 {

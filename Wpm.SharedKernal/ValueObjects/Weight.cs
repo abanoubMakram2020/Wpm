@@ -1,4 +1,4 @@
-﻿namespace wpm.sharedKernal
+﻿namespace Wpm.SharedKernal.ValueObjects
 {
     public record Weight
     {

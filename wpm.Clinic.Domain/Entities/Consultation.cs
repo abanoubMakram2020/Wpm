@@ -1,6 +1,6 @@
 ﻿using wpm.Clinic.Domain.ValueObjects;
-using wpm.sharedKernal;
 using Wpm.SharedKernal;
+using Wpm.SharedKernal.ValueObjects;
 
 namespace wpm.Clinic.Domain.Entities
 {
