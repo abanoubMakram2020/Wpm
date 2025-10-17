@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wpm.Clinic.Infrastructure;
 
@@ -11,9 +12,11 @@ using Wpm.Clinic.Infrastructure;
 namespace Wpm.Clinic.Infrastructure.Migrations
 {
     [DbContext(typeof(ClinicDBContext))]
-    partial class ClinicDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251017172919_add-new-colum")]
+    partial class addnewcolum
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
