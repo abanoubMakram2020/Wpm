@@ -13,5 +13,6 @@
         }
 
         public static implicit operator Weight(decimal value) => new Weight(value);
+        public static implicit operator decimal(Weight value) => value.Value;
     }
 }
