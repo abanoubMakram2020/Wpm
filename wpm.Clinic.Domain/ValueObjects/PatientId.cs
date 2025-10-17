@@ -14,5 +14,6 @@
             Value = value;
         }
         public static implicit operator PatientId(Guid value) => new PatientId(value);
+        public static implicit operator Guid(PatientId patientId) => patientId.Value;
     }
 }

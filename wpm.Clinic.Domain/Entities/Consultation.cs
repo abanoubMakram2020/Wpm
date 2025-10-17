@@ -10,7 +10,7 @@ namespace wpm.Clinic.Domain.Entities
         private readonly List<DrugAdministration> administeredDrugs = new();
         private readonly List<VitalSigns> vitalSignReadings = new();
         public DateTimeRange When { get; private set; }
-        public PatientId PatientId { get; init; }
+        public PatientId PatientId { get; private set; }
         public Text? Diagnosis { get; private set; }
         public Text? Treatment { get; private set; }
         public Weight? CurrentWeight { get; private set; }
@@ -20,10 +20,8 @@ namespace wpm.Clinic.Domain.Entities
 
         public Consultation(PatientId patientId)
         {
-            Id = Guid.NewGuid();
-            PatientId = patientId;
-            Status = ConsultationStatus.Open;
-            When = DateTime.UtcNow;
+            ApplyDomainEvent(new Events.ConsultationStarted(Guid.NewGuid(), patientId, DateTime.UtcNow));
+
         }
 
         public void RegisterVitalSigns(IEnumerable<VitalSigns> vitalSigns)
@@ -45,8 +43,8 @@ namespace wpm.Clinic.Domain.Entities
 
         public void SetDiagnosis(Text diagnosis)
         {
-            ValidateConsultationStatus();
-            Diagnosis = diagnosis;
+            ApplyDomainEvent(new Events.DiagnosisUpdated(Id, diagnosis));
+
         }
         public void SetTreatment(Text treatment)
         {
@@ -70,6 +68,23 @@ namespace wpm.Clinic.Domain.Entities
             }
             Status = ConsultationStatus.Closed;
             When = new DateTimeRange(When.StartedAt, DateTime.UtcNow);
+        }
+
+        protected override void ChangeStateByUsingDomainEvent(IDomainEvent domainEvent)
+        {
+            switch (domainEvent)
+            {
+                case Events.ConsultationStarted e:
+                    Id = e.Id;
+                    PatientId = e.PatientId;
+                    When = e.StartedAt;
+                    Status = ConsultationStatus.Open;
+                    break;
+                case Events.DiagnosisUpdated e:
+                    ValidateConsultationStatus();
+                    Diagnosis = e.diagnosis;
+                    break;
+            }
         }
     }
 

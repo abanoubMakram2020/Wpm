@@ -19,5 +19,6 @@
                 throw new ArithmeticException("Text too large ");
         }
         public static implicit operator Text(string value) => new Text(value);
+        public static implicit operator string(Text text) => text.Value;
     }
 }
