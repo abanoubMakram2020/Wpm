@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using wpm.Clinic.Domain.Entities;
 using wpm.Clinic.Domain.ValueObjects;
+using Wpm.SharedKernal;
 
 namespace Wpm.Clinic.Infrastructure
 {
@@ -10,6 +11,7 @@ namespace Wpm.Clinic.Infrastructure
         public DbSet<Consultation> Consultations { get; set; }
         public DbSet<DrugAdministration> DrugAdministrations { get; set; }
         public DbSet<VitalSigns> VitalSigns { get; set; }
+        //public DbSet<ConsultationEventData> EventsData { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,5 +38,25 @@ namespace Wpm.Clinic.Infrastructure
             });
 
         }
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var result = await base.SaveChangesAsync(cancellationToken);
+
+            var domainEntities = ChangeTracker.Entries<AggregateRoot>()
+                .Where(x => x.Entity.GetChanges.Any())
+                .Select(x => x.Entity)
+                .ToList();
+
+            var events = domainEntities.SelectMany(x => x.GetChanges).ToList();
+            domainEntities.ForEach(e => e.ClearChanges());
+
+            foreach (var domainEvent in events)
+                // base.Update(new ConsultationEventData(
+                Console.WriteLine($"{Guid.NewGuid()},{(domainEvent as dynamic).Id},{domainEvent.GetType().Name},{System.Text.Json.JsonSerializer.Serialize(domainEvent, domainEvent.GetType())},{domainEvent.GetType().AssemblyQualifiedName}");
+            //));
+
+            return result;
+        }
+        // public record ConsultationEventData(Guid Id, Guid AggregateId, string EventName, string Data, string AssemblyQualifiedName);
     }
 }
